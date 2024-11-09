@@ -1,4 +1,5 @@
-import { ScrollView } from 'react-native'
+import { ScrollView, Text } from 'react-native'
+import { useState } from 'react'
 import { styles } from './styles'
 import Header from '@/components/Header'
 import Post from '@/components/Post'
@@ -6,7 +7,13 @@ import SearchBar from '@/components/SearchBar'
 
 export default function PostsList() {
 
-  const postsMock = [
+  const [search, setSearch] = useState<string>('')
+
+  const handleSearch = (text: string) => {
+    setSearch(text)
+  }
+
+  const posts = [
     {
       id: 1,
       title: 'Título do post de exemplo 1',
@@ -51,13 +58,29 @@ export default function PostsList() {
     }
   ]
 
+  const filteredPosts = posts.filter((post) => 
+    post.title.toLowerCase().includes(search.toLowerCase()) ||
+    post.content.toLowerCase().includes(search.toLowerCase())
+  )
+  if (filteredPosts.length == 0) {
+    return (
+      <>
+        <Header/>
+        <ScrollView style={styles.container}>
+          <SearchBar onSearch={handleSearch}/>
+          <Text style={styles.feedBackMessage}>Nenhum resultado encontrado</Text>
+        </ScrollView>
+      </>
+    )
+  }
+
   return (
     <>
       <Header/>
       <ScrollView style={styles.container}>
-        <SearchBar/>
+        <SearchBar onSearch={handleSearch}/>
 
-        {postsMock.map(post => (
+        {filteredPosts.map(post => (
           <Post key={post.id} post={ post }/>
         ))}
       </ScrollView>

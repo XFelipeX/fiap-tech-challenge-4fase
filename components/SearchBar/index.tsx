@@ -2,9 +2,9 @@ import { View, TextInput } from "react-native";
 import { Ionicons } from '@expo/vector-icons';
 import { styles } from './styles'
 
-export default function SearchBar() {
-  const handleInputChange = () => {
-    console.log('Input modificado')
+export default function SearchBar({ onSearch }: { onSearch: (text: string) => void}) {
+  const handleInputChange = (text: string) => {
+    onSearch(text)
   }
 
   return (

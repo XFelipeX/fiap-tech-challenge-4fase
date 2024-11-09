@@ -9,7 +9,6 @@ export const styles = StyleSheet.create({
     backgroundColor: colors.background,
     paddingHorizontal: 18,
     paddingTop: 26,
-    paddingBottom: 40
   },
   feedBackMessage: {
     color: colors.text,

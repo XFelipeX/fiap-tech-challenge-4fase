@@ -10,5 +10,9 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 18,
     paddingTop: 26,
     paddingBottom: 40
+  },
+  feedBackMessage: {
+    color: colors.text,
+    textAlign: 'center'
   }
 })

@@ -1,15 +1,26 @@
-import { View, Text } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
 import { styles } from './styles'
 
-export default function Post({ post }: any) {
+interface PostProps {
+  post: {
+    id: number,
+    title: string,
+    content: string,
+    teacherName: string,
+    createdDate: string,
+  },
+  onPress: () => void
+}
+
+export default function Post({ post, onPress }: PostProps) {
   return (
-    <View style={styles.postContainer}>
+    <TouchableOpacity onPress={onPress} style={styles.postContainer}>
       <Text style={styles.title}>{ post.title }</Text>
       <Text numberOfLines={5} style={styles.content}>{'\t'}{ post.content }</Text>
       <View style={styles.infoContainer}>
         <Text style={styles.infoText}>{ post.teacherName }</Text>
         <Text style={styles.infoText}>{ post.createdDate }</Text>
       </View>
-    </View>
+    </TouchableOpacity>
   )
 }

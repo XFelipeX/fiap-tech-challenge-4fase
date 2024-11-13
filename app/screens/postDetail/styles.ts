@@ -39,7 +39,7 @@ export const styles = StyleSheet.create({
     marginHorizontal: 'auto'
   },
   backButton: {
-    backgroundColor: colors.logo,
+    backgroundColor: colors.buttonBackground,
     paddingHorizontal: 35,
     paddingVertical: 13,
     borderRadius: 5
@@ -47,6 +47,6 @@ export const styles = StyleSheet.create({
   buttonText: {
     fontSize: 20,
     fontWeight: 'bold',
-    color: colors.text,
+    color: colors.buttonText,
   }
 })

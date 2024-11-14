@@ -5,9 +5,14 @@ const colors = Colors.dark;
 
 export const styles = StyleSheet.create({
   menu: {
-    width: 40,
+    width: 33,
     height: 33,
-    backgroundColor: '#FFFFFF'
+    color: colors.text
+  },
+  menuIcon: {
+    width: '100%',
+    height: undefined,
+    aspectRatio: 1,
   },
   header: {
     flexDirection: 'row',
@@ -23,5 +28,21 @@ export const styles = StyleSheet.create({
     color: colors.logo,
     fontSize: 24,
     fontWeight: 'bold',
+  },
+  sidebar: {
+    top: 0,
+    left: 0,
+    width: '100%',
+    height: '100%',
+    backgroundColor: colors.headerBackground,
+    display: 'flex',
+    flexDirection: 'column',
+    padding: 20,
+    zIndex: 999,
+  },
+  sidebarItems: {
+    color: colors.text,
+    fontSize: 20,
+    padding: 8
   }
 })

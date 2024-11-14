@@ -18,6 +18,20 @@ export const styles = StyleSheet.create({
     // ANDROID
     elevation: 5,
   },
+  postContainerAdmin: {
+    backgroundColor: colors.secondBackground,
+    borderTopEndRadius: 10,
+    borderTopLeftRadius: 10,
+    paddingHorizontal: 15,
+    paddingVertical: 10,
+    // IOS
+    shadowColor: '#000000',
+    shadowOffset: {width: 0, height: 2},
+    shadowOpacity: 0.3,
+    shadowRadius: 5,
+    // ANDROID
+    elevation: 5,
+  },
   title: {
     color: colors.text,
     fontSize: 18,

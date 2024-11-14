@@ -25,6 +25,8 @@ export const styles = StyleSheet.create({
     marginBottom: 20,
     width: '100%',
     marginTop: 10,
+    borderWidth: 1,
+    borderColor: colors.border,
   },
   label: {
     color: colors.text,

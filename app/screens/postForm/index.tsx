@@ -108,10 +108,6 @@ export default function PostForm() {
               <TouchableOpacity style={styles.submitButton} onPress={() => handleSubmit()} disabled={!isValid}>
                 <Text style={styles.submitButtonText}>{ post ? 'Salvar' : 'Criar Post'}</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={[styles.returnButton]} onPress={() => navigation.navigate("PostsAdmin")}>
-                <Text style={styles.submitButtonText}>Voltar</Text>
-              </TouchableOpacity>
-              </View>
             </>
           )}
         </Formik>

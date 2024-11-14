@@ -1,4 +1,4 @@
-import { ScrollView, Text } from 'react-native'
+import { ScrollView, Text, TouchableOpacity } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import { useState } from 'react'
 import { styles } from './styles'
@@ -6,8 +6,8 @@ import Header from '@/components/Header'
 import Post from '@/components/Post'
 import SearchBar from '@/components/SearchBar'
 
-export default function PostsList() {
-  const navigation = useNavigation()
+export default function PostsAdmin() {
+  const navigation = useNavigation<any>()
   const [search, setSearch] = useState<string>('')
 
   const posts = [
@@ -45,6 +45,10 @@ export default function PostsList() {
     setSearch(text)
   }
 
+  const handleDelete = (post: any) => {
+    
+  }
+
   const filteredPosts = posts.filter((post) => 
     post.title.toLowerCase().includes(search.toLowerCase()) ||
     post.content.toLowerCase().includes(search.toLowerCase())
@@ -69,7 +73,17 @@ export default function PostsList() {
         <SearchBar onSearch={handleSearch}/>
 
         {filteredPosts.map(post => (
-          <Post adminPage={false} key={post.id} post={ post } onPress={() => navigation.navigate('PostDetail', {post: post})}/>
+          <>
+          <Post adminPage={true} key={post.id} post={ post } onPress={() => {}}/>
+          <ScrollView contentContainerStyle={styles.containerButtons}>
+            <TouchableOpacity style={styles.editButton} onPress={() => navigation.navigate('PostForm', {post: post})}>
+              <Text style={styles.buttonText}>Editar</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.deleteButton} onPress={handleDelete}>
+              <Text style={styles.buttonText}>Excluir</Text>
+            </TouchableOpacity>
+          </ScrollView>
+          </>
         ))}
       </ScrollView>
     </>

@@ -1,5 +1,5 @@
 import { View, Text, TextInput, TouchableOpacity, ScrollView } from 'react-native'
-import { useRoute } from '@react-navigation/native'
+import { useNavigation, useRoute } from '@react-navigation/native'
 import { Formik } from 'formik'
 import * as yup from 'yup'
 import { styles } from './styles'
@@ -21,6 +21,7 @@ interface IFormPost {
 
 export default function PostForm() {
   const route = useRoute()
+  const navigation = useNavigation<any>()
   const { post } = route.params as { post: IPost } || {}
   let initialValues = { title: '', author: '', content: '' }
 
@@ -107,6 +108,10 @@ export default function PostForm() {
               <TouchableOpacity style={styles.submitButton} onPress={() => handleSubmit()} disabled={!isValid}>
                 <Text style={styles.submitButtonText}>{ post ? 'Salvar' : 'Criar Post'}</Text>
               </TouchableOpacity>
+              <TouchableOpacity style={[styles.returnButton]} onPress={() => navigation.navigate("PostsAdmin")}>
+                <Text style={styles.submitButtonText}>Voltar</Text>
+              </TouchableOpacity>
+              </View>
             </>
           )}
         </Formik>

@@ -1,6 +1,7 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack"
 import PostsList from '@/app/screens/PostsList'
 import PostDetail from '@/app/screens/postDetail'
+import PostForm from "@/app/screens/postForm"
 import Login from '@/app/screens/login'
 
 import PersonList from '@/app/screens/personList'

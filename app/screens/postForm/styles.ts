@@ -16,12 +16,13 @@ export const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: 'bold',
     textAlign: 'center',
-    marginBottom: 33
+    marginBottom: 13
   },
   label: {
     color: colors.text,
     fontSize: 16,
     fontWeight: 'bold',
+    marginTop: 20,
     marginBottom: 5
   },
   input: {
@@ -31,18 +32,22 @@ export const styles = StyleSheet.create({
     borderColor: colors.border,
     borderWidth: 1,
     color: colors.text,
-    marginBottom: 20,
     paddingHorizontal: 10
   },
   contentInput: {
     paddingVertical: 10,
-    marginBottom: 57,
     height: 'auto',
     lineHeight: 20
+  },
+  errorMessage: {
+    marginTop: 2,
+    fontSize: 14,
+    color: colors.errorText
   },
   submitButton: {
     backgroundColor: colors.buttonBackground,
     marginHorizontal: 'auto',
+    marginTop: 57,
     paddingHorizontal: 35,
     paddingVertical: 13,
     borderRadius: 5

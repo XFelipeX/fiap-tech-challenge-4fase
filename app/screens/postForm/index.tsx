@@ -1,5 +1,5 @@
 import { View, Text, TextInput, TouchableOpacity, ScrollView } from 'react-native'
-import { useRoute } from '@react-navigation/native'
+import { useNavigation, useRoute } from '@react-navigation/native'
 import { Formik } from 'formik'
 import { styles } from './styles'
 import Header from '@/components/Header'
@@ -20,6 +20,7 @@ interface IFormPost {
 
 export default function PostForm() {
   const route = useRoute()
+  const navigation = useNavigation<any>()
   const { post } = route.params as { post: IPost } || {}
 
   const updatePost = (values: IFormPost) => {
@@ -38,7 +39,7 @@ export default function PostForm() {
       <ScrollView showsVerticalScrollIndicator={false} style={styles.container}>
         <Text style={styles.title}>{ post ? 'Editar Post' : 'Criar Post' }</Text>
         <Formik
-          initialValues={{ title: '', author: '', content: '' }}
+          initialValues={post ? { title: post.title, author: post.teacherName, content: post.content } :  { title: '', author: '', content: '' }}
           onSubmit={(values) => post ? updatePost(values) : createPost(values)}
         >
           {({handleChange, handleBlur, handleSubmit, values}) => (
@@ -71,9 +72,14 @@ export default function PostForm() {
                 value={values.content}
                 keyboardType='default'
               />
+              <View style={styles.buttonsContainer}>
               <TouchableOpacity style={styles.submitButton} onPress={() => handleSubmit()}>
                 <Text style={styles.submitButtonText}>{ post ? 'Salvar' : 'Criar Post'}</Text>
               </TouchableOpacity>
+              <TouchableOpacity style={[styles.returnButton]} onPress={() => navigation.navigate("PostsAdmin")}>
+                <Text style={styles.submitButtonText}>Voltar</Text>
+              </TouchableOpacity>
+              </View>
             </>
           )}
         </Formik>

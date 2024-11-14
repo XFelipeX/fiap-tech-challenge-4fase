@@ -53,6 +53,20 @@ export const styles = StyleSheet.create({
     color: colors.buttonText,
   },
   bottomContainer: {
-    marginTop: 60
+    marginTop: 60,
+    display: 'flex',
+  },
+  returnButton: {
+    backgroundColor: colors.editButtonBackground,
+    marginHorizontal: 'auto',
+    paddingHorizontal: 35,
+    paddingVertical: 13,
+    borderRadius: 5
+  },
+  buttonsContainer:{
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center'
   }
 })

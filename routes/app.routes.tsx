@@ -3,11 +3,9 @@ import PostsList from '@/app/screens/PostsList'
 import PostDetail from '@/app/screens/postDetail'
 import PostForm from "@/app/screens/postForm"
 import Login from '@/app/screens/login'
-
 import PersonList from '@/app/screens/personList'
 import PersonForm from '@/app/screens/personForm'
 import PostsAdmin from "@/app/screens/postsAdmin"
-import PostForm from "@/app/screens/postForm"
 
 
 const { Navigator, Screen } = createNativeStackNavigator()

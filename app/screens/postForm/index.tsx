@@ -9,13 +9,13 @@ interface IPost {
   id: number,
   title: string,
   content: string,
-  teacherName: string,
-  createdDate: string,
+  teachername: string,
+  createddate: string,
 }
 
 interface IFormPost {
   title: string,
-  author: string,
+  teachername: string,
   content: string
 }
 
@@ -23,12 +23,12 @@ export default function PostForm() {
   const route = useRoute()
   const navigation = useNavigation<any>()
   const { post } = route.params as { post: IPost } || {}
-  let initialValues = { title: '', author: '', content: '' }
+  let initialValues = { title: '', teachername: '', content: '' }
 
   if (post) {
     initialValues = {
       title: post.title,
-      author: post.teacherName,
+      teachername: post.teachername,
       content: post.content
     }
   } 
@@ -47,7 +47,7 @@ export default function PostForm() {
     title: yup
       .string()
       .required('Por favor, informe um título.'),
-    author: yup
+    teachername: yup
       .string()
       .required('Por favor, informe o autor.'),
     content: yup
@@ -82,15 +82,15 @@ export default function PostForm() {
               }
               <Text style={styles.label}>Autor</Text>
               <TextInput
-                name="author"
+                name="teachername"
                 style={styles.input}
-                onChangeText={handleChange('author')}
-                onBlur={handleBlur('author')}
-                value={values.author}
+                onChangeText={handleChange('teachername')}
+                onBlur={handleBlur('teachername')}
+                value={values.teachername}
                 keyboardType='default'
               />
-              {errors.author &&
-                <Text style={styles.errorMessage}>{errors.author}</Text>
+              {errors.teachername &&
+                <Text style={styles.errorMessage}>{errors.teachername}</Text>
               }
               <Text style={styles.label}>Conteúdo</Text>
               <TextInput

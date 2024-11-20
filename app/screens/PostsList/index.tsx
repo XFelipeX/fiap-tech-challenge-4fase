@@ -37,7 +37,7 @@ export default function PostsList() {
 
   useEffect(() => {
     fetchPosts();
-  }, [])
+  })
 
   const handleSearch = (text: string) => {
     setSearch(text)

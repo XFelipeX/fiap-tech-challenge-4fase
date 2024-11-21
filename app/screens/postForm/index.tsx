@@ -143,17 +143,22 @@ export default function PostForm() {
                 <Text style={styles.errorMessage}>{errors.title}</Text>
               }
               <Text style={styles.label}>Autor</Text>
-              <RNPickerSelect
-                name="author"
-                style={{
-                  inputIOS: styles.input,
-                  inputAndroid: styles.input
-                }}
-                onValueChange={(value) => setFieldValue('author', value)}
-                onBlur={handleBlur('author')}
-                value={values.author}
-                items={options}
-              />
+              <View style={styles.selectContainer}>
+                <RNPickerSelect
+                  name="author"
+                  style={{
+                    inputIOS: styles.selectInput,
+                    inputAndroid: styles.selectInput
+                  }}
+                  placeholder={{
+                    label: 'Selecione um autor',
+                  }}
+                  onValueChange={(value) => setFieldValue('author', value)}
+                  onBlur={handleBlur('author')}
+                  value={values.author}
+                  items={options}
+                />
+              </View>
               {errors.author &&
                 <Text style={styles.errorMessage}>{errors.author}</Text>
               }

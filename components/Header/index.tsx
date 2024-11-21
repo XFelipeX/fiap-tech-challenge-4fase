@@ -13,8 +13,8 @@ export default function Header() {
   function navigateToPage(pageName: string) {
     setIsOpen(!isOpen)
     if (pageName == 'posts') navigation.navigate('PostsList');
-    if (pageName == 'createPosts') navigation.navigate('PostsList');
-    if (pageName == 'postsAdmin') navigation.navigate('PostsList');
+    if (pageName == 'createPosts') navigation.navigate('PostForm');
+    if (pageName == 'postsAdmin') navigation.navigate('PostsAdmin');
     if (pageName == 'teachersAdmin') navigation.navigate('PersonList', {isTeacher: true});
     if (pageName == 'studentsAdmin') navigation.navigate('PersonList', {isTeacher: false});
   }

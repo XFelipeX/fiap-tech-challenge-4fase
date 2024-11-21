@@ -18,7 +18,7 @@ interface IPost {
 export default function PostsList() {
   const navigation = useNavigation()
   const [search, setSearch] = useState<string>('')
-  const [posts, setPosts] = useState([])
+  const [posts, setPosts] = useState<IPost[]>([])
   const [error, setError] = useState<string | null>(null)
   const [loading, setLoading] = useState<boolean>(true)
 
@@ -53,7 +53,7 @@ export default function PostsList() {
       <>
         <Header/>
         <ScrollView style={styles.container}>
-          <Text style={styles.feedBackMessage}><Text style={styles.feedBackMessage}>Carregando...</Text></Text>
+          <Text style={styles.feedBackMessage}>Carregando...</Text>
         </ScrollView>
       </>
     )
@@ -63,7 +63,7 @@ export default function PostsList() {
       <>
         <Header/>
         <ScrollView style={styles.container}>
-          <Text style={styles.feedBackMessage}><Text style={styles.feedBackMessage}>Error: {error}</Text></Text>
+          <Text style={styles.feedBackMessage}>Error: {error}</Text>
         </ScrollView>
       </>
     )

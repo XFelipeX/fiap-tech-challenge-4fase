@@ -7,8 +7,8 @@ interface IPost {
   id: number,
   title: string,
   content: string,
-  teacherName: string,
-  createdDate: string,
+  teachername: string,
+  createddate: string,
 }
 
 export default function PostDetail() {
@@ -21,8 +21,8 @@ export default function PostDetail() {
       <Header/>
       <ScrollView style={styles.container}>
         <View style={styles.infoContainer}>
-          <Text style={styles.infoText}>{ post.teacherName }</Text>
-          <Text style={styles.infoText}>{ post.createdDate }</Text>
+          <Text style={styles.infoText}>Por: { post.teachername }</Text>
+          <Text style={styles.infoText}>{ post.createddate }</Text>
         </View>
         <Text style={styles.title}>{ post.title }</Text>
         <Text style={styles.content}>{'\t'}{ post.content }</Text>

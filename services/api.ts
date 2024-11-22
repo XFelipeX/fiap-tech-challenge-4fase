@@ -1,8 +1,7 @@
 import axios from 'axios';
-import { BACKEND_URL } from "@env"
 
 const api = axios.create({
-  baseURL: BACKEND_URL,
+  baseURL: process.env.EXPO_PUBLIC_BACKEND_URL,
   headers: {
     'Content-Type': 'application/json',
   },

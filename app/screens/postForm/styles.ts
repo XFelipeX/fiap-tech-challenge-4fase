@@ -27,17 +27,30 @@ export const styles = StyleSheet.create({
   },
   input: {
     backgroundColor: colors.secondBackground,
-    height: 34,
+    height: 40,
     borderRadius: 5,
     borderColor: colors.border,
     borderWidth: 1,
+    fontSize: 16,
     color: colors.text,
     paddingHorizontal: 10
+  },
+  selectContainer: {
+    backgroundColor: colors.secondBackground,
+    borderRadius: 5,
+    borderColor: colors.border,
+    borderWidth: 1,
+    padding: 1
+  },
+  selectInput: {
+    backgroundColor: colors.secondBackground,
+    color: colors.text,
   },
   contentInput: {
     paddingVertical: 10,
     height: 'auto',
-    lineHeight: 20
+    fontSize: 16,
+    lineHeight: 25
   },
   errorMessage: {
     marginTop: 2,

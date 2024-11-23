@@ -49,4 +49,10 @@ export const styles = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center',
   },
+  error:{
+    color: colors.errorText,
+    fontSize: 16,
+    textAlign: 'center',
+    marginTop: 10,
+  }
 });

@@ -1,19 +1,16 @@
 import { View, Text, TextInput, TouchableOpacity, ScrollView } from 'react-native'
 import { useNavigation, useRoute } from '@react-navigation/native'
-import { useEffect, useState } from 'react'
-import RNPickerSelect from 'react-native-picker-select'
 import { Formik } from 'formik'
 import * as yup from 'yup'
 import { styles } from './styles'
-import { api } from '@/services/api'
 import Header from '@/components/Header'
 
 interface IPost {
   id: number,
   title: string,
   content: string,
-  teachername: string,
-  createddate: string,
+  teacherName: string,
+  createdDate: string,
 }
 
 interface IFormPost {
@@ -22,75 +19,28 @@ interface IFormPost {
   content: string
 }
 
-interface IOptionsData {
-  value: string
-  label: string
-}
-
 export default function PostForm() {
   const route = useRoute()
   const navigation = useNavigation<any>()
   const { post } = route.params as { post: IPost } || {}
-	const [options, setOptions] = useState<IOptionsData[]>([])
-	const [error, setError] = useState<string | null>(null)
   let initialValues = { title: '', author: '', content: '' }
-  
+
   if (post) {
     initialValues = {
       title: post.title,
-      author: post.teachername,
+      author: post.teacherName,
       content: post.content
     }
-  }
-  
-  useEffect(() => {
-    const fetchTeachers = async () => {
-      try {
-        const response = await api.get('/teachers');
-				const teachers = response.data.map((teacher: { name: any; id: any; }) => ({
-					label: teacher.name,
-					value: teacher.id
-				}))
-				setOptions(teachers)
+  } 
 
-      } catch (error: any) {
-        setError(error.message)
-      }
-    }
-
-    fetchTeachers();
-  }, [])
-
-  const updatePost = async (values: IFormPost) => {
-    const { title, author, content } = values
-		
-		try {
-			await api.put(`/posts/${post.id}`, {
-				title: title,
-				teacherId: author,
-				content: content
-			});
-      navigation.navigate('PostsAdmin')
-
-		} catch (error: any) {
-			setError(error.message)
-		}
+  const updatePost = (values: IFormPost) => {
+    console.log('Atualizando post')
+    console.log(values)
   }
 
-  const createPost = async (values: IFormPost) => {
-    const { title, author, content } = values
-		
-		try {
-			await api.post('/posts', {
-				title: title,
-				teacherId: author,
-				content: content
-			});
-			navigation.navigate('PostsList')
-
-		} catch (error: any) {
-			setError(error.message)
-		}
+  const createPost = (values: IFormPost) => {
+    console.log('Criando post')
+    console.log(values)
   }
 
   const validationSchema = yup.object().shape({
@@ -106,17 +56,6 @@ export default function PostForm() {
       .required('Por favor, insira o conteúdo.'),
   })
 
-  if(error) {
-    return (
-      <>
-        <Header/>
-        <ScrollView style={styles.container}>
-          <Text style={styles.feedBackMessage}>Error: {error}</Text>
-        </ScrollView>
-      </>
-    )
-  }
-
   return (
     <>
       <Header/>
@@ -126,9 +65,8 @@ export default function PostForm() {
           validationSchema={validationSchema}
           initialValues={initialValues}
           onSubmit={(values) => post ? updatePost(values) : createPost(values)}
-          enableReinitialize
         >
-          {({handleChange, setFieldValue, handleBlur, handleSubmit, values, errors, isValid}) => (
+          {({handleChange, handleBlur, handleSubmit, values, errors, isValid}) => (
             <>
               <Text style={styles.label}>Título</Text>
               <TextInput
@@ -143,22 +81,14 @@ export default function PostForm() {
                 <Text style={styles.errorMessage}>{errors.title}</Text>
               }
               <Text style={styles.label}>Autor</Text>
-              <View style={styles.selectContainer}>
-                <RNPickerSelect
-                  name="author"
-                  style={{
-                    inputIOS: styles.selectInput,
-                    inputAndroid: styles.selectInput
-                  }}
-                  placeholder={{
-                    label: 'Selecione um autor',
-                  }}
-                  onValueChange={(value) => setFieldValue('author', value)}
-                  onBlur={handleBlur('author')}
-                  value={values.author}
-                  items={options}
-                />
-              </View>
+              <TextInput
+                name="author"
+                style={styles.input}
+                onChangeText={handleChange('author')}
+                onBlur={handleBlur('author')}
+                value={values.author}
+                keyboardType='default'
+              />
               {errors.author &&
                 <Text style={styles.errorMessage}>{errors.author}</Text>
               }

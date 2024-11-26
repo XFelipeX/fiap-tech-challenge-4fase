@@ -6,6 +6,7 @@ import { api } from '@/services/api'
 import Header from '@/components/Header'
 import Post from '@/components/Post'
 import SearchBar from '@/components/SearchBar'
+import React from 'react'
 
 interface IPost {
   id?: number

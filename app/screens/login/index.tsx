@@ -14,6 +14,7 @@ import { useAuth } from '@/context/AuthContext';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import React from 'react';
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().required('Por favor, informe o email de usuário.'),

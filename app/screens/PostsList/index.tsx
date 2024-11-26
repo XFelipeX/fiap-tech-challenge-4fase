@@ -1,6 +1,6 @@
 import { ScrollView, Text } from 'react-native'
-import { useNavigation } from '@react-navigation/native'
-import { useEffect, useState } from 'react'
+import { useNavigation, useFocusEffect } from '@react-navigation/native'
+import { useState } from 'react'
 import { styles } from './styles'
 import { api } from '@/services/api'
 import Header from '@/components/Header'
@@ -23,22 +23,25 @@ export default function PostsList() {
   const [error, setError] = useState<string | null>(null)
   const [loading, setLoading] = useState<boolean>(true)
 
-  const fetchPosts = async () => {
-    try {
-      const response = await api.get('/posts');
-      setPosts(response.data.posts);
+  useFocusEffect(
+    React.useCallback(() => {
+      const fetchPosts = async () => {
+        setLoading(true)
+        try {
+          const response = await api.get('/posts');
+          setPosts(response.data.posts);
+    
+        } catch (error: any) {
+          setError(error.message);
+    
+        } finally {
+          setLoading(false);
+        }
+      }
 
-    } catch (error: any) {
-      setError(error.message);
-
-    } finally {
-      setLoading(false);
-    }
-  }
-
-  useEffect(() => {
-    fetchPosts();
-  },[])
+      fetchPosts()
+    }, [])
+  )
 
   const handleSearch = (text: string) => {
     setSearch(text)

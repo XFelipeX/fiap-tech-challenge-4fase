@@ -128,8 +128,9 @@ export default function PostForm() {
           initialValues={initialValues}
           onSubmit={(values) => post ? updatePost(values) : createPost(values)}
           enableReinitialize
+          validateOnBlur={true}
         >
-          {({handleChange, setFieldValue, handleBlur, handleSubmit, values, errors, isValid}) => (
+          {({handleChange, setFieldValue, handleBlur, handleSubmit, values, errors, touched, isValid}) => (
             <>
               <Text style={styles.label}>Título</Text>
               <TextInput
@@ -140,7 +141,7 @@ export default function PostForm() {
                 value={values.title}
                 keyboardType='default'
               />
-              {errors.title &&
+              {touched.title && errors.title &&
                 <Text style={styles.errorMessage}>{errors.title}</Text>
               }
               <Text style={styles.label}>Autor</Text>
@@ -160,7 +161,7 @@ export default function PostForm() {
                   items={options}
                 />
               </View>
-              {errors.author &&
+              {touched.title && errors.author &&
                 <Text style={styles.errorMessage}>{errors.author}</Text>
               }
               <Text style={styles.label}>Conteúdo</Text>
@@ -173,7 +174,7 @@ export default function PostForm() {
                 value={values.content}
                 keyboardType='default'
               />
-              {errors.content &&
+              {touched.title && errors.content &&
                 <Text style={styles.errorMessage}>{errors.content}</Text>
               }
               <TouchableOpacity style={styles.submitButton} onPress={() => handleSubmit()} disabled={!isValid}>

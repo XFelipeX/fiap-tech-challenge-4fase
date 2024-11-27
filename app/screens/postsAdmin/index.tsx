@@ -39,6 +39,7 @@ export default function PostsAdmin() {
 
   useFocusEffect(
     React.useCallback(() => {
+      setSearch('')
       fetchPosts()
     }, [])
   )
@@ -120,7 +121,7 @@ export default function PostsAdmin() {
 
         {filteredPosts.map(post => (
           <>
-          <Post adminPage={true} key={post.id} post={ post } onPress={() => {}}/>
+          <Post adminPage={true} key={post.id} post={ post } onPress={() => navigation.navigate('PostDetail', {post: post})}/>
           <ScrollView contentContainerStyle={styles.containerButtons}>
             <TouchableOpacity style={styles.editButton} onPress={() => navigation.navigate('PostForm', {post: post})}>
               <Text style={styles.buttonText}>Editar</Text>

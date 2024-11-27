@@ -27,7 +27,7 @@ export default function PostDetail() {
         <Text style={styles.title}>{ post.title }</Text>
         <Text style={styles.content}>{'\t'}{ post.content }</Text>
         <View style={styles.backButtonContainer}>
-          <TouchableOpacity style={styles.backButton} onPress={() => navigation.navigate('PostsList')}>
+          <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
             <Text style={styles.buttonText}>Voltar</Text>
           </TouchableOpacity>
         </View>

@@ -177,7 +177,7 @@ export default function PostForm() {
               {touched.title && errors.content &&
                 <Text style={styles.errorMessage}>{errors.content}</Text>
               }
-              <TouchableOpacity style={styles.submitButton} onPress={() => handleSubmit()} disabled={!isValid}>
+              <TouchableOpacity style={styles.submitButton} onPress={() => handleSubmit()} >
                 <Text style={styles.submitButtonText}>{ post ? 'Salvar' : 'Criar Post'}</Text>
               </TouchableOpacity>
             </>

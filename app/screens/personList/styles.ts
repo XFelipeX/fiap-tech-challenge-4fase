@@ -10,6 +10,22 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 18,
     paddingTop: 26,
   },
+  addPerson: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    width: '60%',
+    backgroundColor: colors.buttonBackground,
+    borderRadius: 10,
+    padding: 10,
+    marginHorizontal: 'auto',
+    marginBottom: 30
+  },
+  addPersonText: {
+    fontSize: 17,
+    fontWeight: 'bold',
+    color: colors.buttonText
+  },
   personContainer: {
     backgroundColor: colors.secondBackground,
     borderRadius: 10,

@@ -1,50 +1,126 @@
-# Welcome to your Expo app 👋
+# Tech Challenge | Pós-Tech FullStack Development - FIAP
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Este é o projeto desenvolvido durante a fase IV do curso de pós-graduação em FullStack Development da FIAP - turma I/2024.
 
-## Get started
+Membros do grupo 37:
 
-1. Install dependencies
+- Felipe Dias Amorim Pessoa - RM355212 - felipediasamorimpessoa@gmail.com
+- Sérgio Percevallis Neto - RM354791 - sergioneto261001@gmail.com
+- Thiago Scheffer Fialho - RM353477 - thiago.sch.fialho@gmail.com
+- Leonardo Felipe Boatti - leonardoboatti@hotmail.com
 
-   ```bash
-   npm install
-   ```
+[Visualizar Documentação Técnica](#documentação-técnica-do-projeto) <br>
+[Visualizar Escopo/Requisitos](#o-problema) <br>
+[Visualizar Projeto back-end](https://github.com/XFelipeX/fiap-tech-challenge-2fase)<br>
+[Visualizar Projeto front-end](https://github.com/XFelipeX/fiap-tech-challenge-3fase)
 
-2. Start the app
+## O problema
 
-   ```bash
-    npx expo start
-   ```
+Após o sucesso do desenvolvimento da aplicação de blogging dinâmico
+com a implementação do back-end em Node.js e o front-end utilizando React,
+chegou a hora de criarmos uma interface gráfica mobile robusta, intuitiva e
+eficiente para esta aplicação. Esta atividade focará em desenvolver o front-end
+mobile utilizando React Native, proporcionando uma experiência de usuário
+excelente tanto para docentes quanto para estudantes.
+Requisitos funcionais
 
-In the output, you'll find options to open the app in a
+---
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+### A interface gráfica deve incluir as seguintes páginas e funcionalidades
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+#### Requisitos funcionais
 
-## Get a fresh project
+1. Página principal (lista de posts)
+   - Exibir uma lista de todos os posts disponíveis.
+   - Cada item da lista deve mostrar o título, autor e uma breve
+     descrição do post.
+   - Incluir um campo de busca para filtrar posts por palavras-chave.
+2. Página de leitura de post
+   - Exibir o conteúdo completo de um post selecionado.
+   - Permitir comentários nos posts (opcional).
+3. Página de criação de postagens
+   - Formulário para que professores possam criar postagens.
+   - Campos para título, conteúdo e autor.
+   - Botão para enviar o post ao servidor.
+4. Página de edição de postagens
+   - Formulário para que docentes possam editar postagens
+     existentes.
+   - Carregar os dados atuais do post para edição.
+   - Botão para salvar as alterações.
+5. Página de criação de professores
+   - Formulário para que professores possam cadastrar outros
+     professores.
+   - Botão para enviar o post ao servidor.
+6. Página de edição de professores
+   - Formulário para que professores possam editar docentes já
+     cadastrados.
+     o Botão para salvar as alterações.
+7. Página de listagem de professores
+   - Página para listagem paginada dos professores e, nas tabelas para
+     cada professor, teremos um botão de editar que leva para a página
+     de edição e um botão de excluir que vai deletar o docente do
+     sistema.
+8. Replique os requisitos 5, 6 e 7 para estudantes
+   - Seguindo o padrão de páginas administrativas feitas para
+     professores, faça o mesmo para alunos.
+9. Página administrativa
+   - Exibir uma lista de todas as postagens, com opções para editar e
+     excluir cada post.
+   - Botões para editar e excluir postagens específicas.
+10. Autenticação e autorização
+    - Implementar login para professores.
+    - Garantir que apenas usuários autenticados possam acessar as páginas de criação, edição e administração de postagens.
 
-When you're ready, run:
+#### Requisitos técnicos
 
-```bash
-npm run reset-project
-```
+1. Desenvolvimento em React Native
+   - Utilizar React Native para desenvolver a interface gráfica do
+     aplicativo.
+     o Utilização de hooks e componentes funcionais.
+2. Estilização
+   - Estilizar o projeto de acordo com layout definido pelo grupo.
+3. Integração com Back-End
+   - Realizar chamadas aos endpoints REST para obter, criar, editar e
+     excluir posts.
+   - Realizar chamadas aos endpoints REST para obter, criar, editar e
+     excluir alunos.
+   - Realizar chamadas aos endpoints REST para obter, criar, editar e
+     excluir professores.
+   - Realizar chamadas aos endpoints REST para autenticação.
+   - Validar permissão para professores e alunos, onde professores
+     podem modificar/criar um post e os alunos podem apenas
+     visualizar.
+   - Gerenciar o estado da aplicação com ferramentas como Context
+     API ou Redux (opcional).
+4. Documentação
+   - Documentação técnica detalhada do mobile no README do
+     repositório, incluindo setup inicial, arquitetura da aplicação e guia
+     de uso.
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+## Documentação Técnica do Projeto - FIAP Tech Challenge 3ª Fase
 
-## Learn more
+### Introdução
 
-To learn more about developing your project with Expo, look at the following resources:
+### Setup Inicial
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+**Pré-requisitos:**
 
-## Join the community
+**Instalação:**
 
-Join our community of developers creating universal apps.
+**Configuração:**
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+**Execução:**
+
+**Docker compose**
+
+**Somente Aplicação Node (sem Docker)**
+
+## Arquitetura da Aplicação
+
+## Estrutura de Pastas
+
+## Rotas
+
+## Estilização
+
+## Stack utilizada

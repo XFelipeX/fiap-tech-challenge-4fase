@@ -130,7 +130,7 @@ export default function PostForm() {
           enableReinitialize
           validateOnBlur={true}
         >
-          {({handleChange, setFieldValue, handleBlur, handleSubmit, values, errors, touched, isValid}) => (
+          {({handleChange, setFieldValue, handleBlur, handleSubmit, values, errors, touched}) => (
             <>
               <Text style={styles.label}>Título</Text>
               <TextInput

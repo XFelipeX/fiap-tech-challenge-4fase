@@ -14,7 +14,7 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    width: '60%',
+    gap: 5,
     backgroundColor: colors.buttonBackground,
     borderRadius: 10,
     padding: 10,

@@ -48,7 +48,7 @@ export default function PostForm() {
     const fetchTeachers = async () => {
       try {
         const response = await api.get('/teachers');
-				const teachers = response.data.map((teacher: { name: any; id: any; }) => ({
+				const teachers = response.data.teachers.map((teacher: { name: any; id: any; }) => ({
 					label: teacher.name,
 					value: teacher.id
 				}))

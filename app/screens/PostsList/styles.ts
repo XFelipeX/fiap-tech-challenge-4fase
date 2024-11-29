@@ -13,5 +13,9 @@ export const styles = StyleSheet.create({
   feedBackMessage: {
     color: colors.text,
     textAlign: 'center'
+  },
+  bottomContainer: {
+    marginTop: 30,
+    display: 'flex',
   }
 })

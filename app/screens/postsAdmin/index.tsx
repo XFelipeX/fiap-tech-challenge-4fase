@@ -1,4 +1,4 @@
-import { Alert, ScrollView, Text, TouchableOpacity } from 'react-native'
+import { Alert, ScrollView, Text, TouchableOpacity, View } from 'react-native'
 import { useNavigation, useFocusEffect } from '@react-navigation/native'
 import { useState } from 'react'
 import { styles } from './styles'
@@ -132,6 +132,7 @@ export default function PostsAdmin() {
           </ScrollView>
           </>
         ))}
+        <View style={styles.bottomContainer}></View>
       </ScrollView>
     </>
   )

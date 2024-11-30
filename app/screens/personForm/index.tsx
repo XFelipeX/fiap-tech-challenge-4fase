@@ -27,7 +27,7 @@ export default function PersonForm({ route }) {
 
     } else {
       if (isTeacher) {
-        return { email: person.email, name: person.name, password: person.password, confirmPassword: '' }
+        return { email: person.email, name: person.name, password: '', confirmPassword: '' }
   
       } else {
         return { name: person.name }

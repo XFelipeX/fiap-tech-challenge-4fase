@@ -30,7 +30,7 @@ export default function PersonForm({ route }) {
         return { email: person.email, name: person.name, password: person.password, confirmPassword: '' }
   
       } else {
-        return { email: person.email, name: person.name }
+        return { name: person.name }
       }
     }
   }
@@ -57,10 +57,6 @@ export default function PersonForm({ route }) {
 
     } else {  
       return yup.object().shape({
-        email: yup
-          .string()
-          .email('Por favor, insira um email válido.')
-          .required('Por favor, informe um email.'),
         name: yup
           .string()
           .required('Por favor, informe o nome do aluno.')
@@ -158,15 +154,19 @@ export default function PersonForm({ route }) {
         >
           {({handleChange, setFieldValue, handleBlur, handleSubmit, values, errors, touched}) => (
             <>
-              <Text style={styles.label}>Email</Text>
-              <TextInput
-                name="email"
-                style={styles.input}
-                onChangeText={handleChange('email')}
-                onBlur={handleBlur('email')}
-                value={values.email}
-                keyboardType='email-address'
-              />
+              {isTeacher && (
+                <>
+                  <Text style={styles.label}>Email</Text>
+                  <TextInput
+                    name="email"
+                    style={styles.input}
+                    onChangeText={handleChange('email')}
+                    onBlur={handleBlur('email')}
+                    value={values.email}
+                    keyboardType='email-address'
+                  />
+                </>
+              )}
               {touched.email && errors.email &&
                 <Text style={styles.errorMessage}>{errors.email}</Text>
               }

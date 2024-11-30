@@ -5,6 +5,8 @@ import { styles } from './styles'
 import Header from '@/components/Header'
 import { useEffect, useState } from 'react'
 import React from 'react'
+import { useNavigation } from '@react-navigation/native'
+import { api } from '@/services/api'
 
 interface IPerson {
   id: number,
@@ -14,6 +16,7 @@ interface IPerson {
 }
 
 export default function PersonForm({ route }) {
+  const navigation = useNavigation()
   const person = route.params?.person as IPerson || undefined;
   const isTeacher = route.params?.isTeacher
   const [personType, setPersonType] = useState('')
@@ -69,14 +72,74 @@ export default function PersonForm({ route }) {
     setPersonType(isTeacher ? 'Professor' : 'Aluno')
   });
 
-  const updatePerson = (values: IPerson) => {
-    console.log('Atualizando professor? ' + isTeacher);
-    console.log(values)
+  const updatePerson = async (values: IPerson) => {
+    const {email, name, password} = values
+
+    if (isTeacher) {
+      try {
+        await api.put(`/teachers/${person.id}`, {
+          name: name
+        });
+
+        await api.put('/auth/register', {
+          email: email,
+          password: password,
+          teacherid: person.id
+        })
+        navigation.navigate('PersonList', {isTeacher: true})
+
+      } catch (e: any) {
+        console.error(e.message)
+      }
+
+    } else {
+      try {
+        await api.put(`/students/${person.id}`, {
+          name: name
+        });
+        navigation.navigate('PersonList', {isTeacher: false})
+
+      } catch (e: any) {
+        console.error(e)
+      }
+    }
   }
 
-  const createPerson = (values: IPerson) => {
-    console.log('Criando professor? ' + isTeacher);
-    console.log(values)
+  const createPerson = async (values: IPerson) => {
+    const {email, name, password} = values
+
+    if (isTeacher) {
+      try {
+        await api.post('/teachers', {
+          name: name
+        });
+
+        const response = await api.get('/teachers');
+        const teachers = response.data.teachers
+        const teacherid = teachers.find((teacher: { id: string, name: string }) => teacher.name === name)?.id
+
+        await api.post('/auth/register', {
+          email: email,
+          password: password,
+          teacherid: teacherid
+        })
+        navigation.navigate('PersonList', {isTeacher: true})
+
+      } catch (e: any) {
+        console.error(e.message)
+      }
+
+    } else {
+      try {
+        await api.post('students', {
+          name: name
+        });
+        navigation.navigate('PersonList', {isTeacher: false})
+
+      } catch (e: any) {
+        console.error(e)
+      }
+    }
   }
 
   return (

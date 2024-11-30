@@ -2,6 +2,8 @@ import { ScrollView, View, Text, TouchableOpacity  } from 'react-native'
 import { styles } from './styles'
 import { useNavigation } from '@react-navigation/native'
 import Header from '@/components/Header'
+import React from 'react'
+import { Ionicons } from '@expo/vector-icons'
 
 export default function PersonList({ route }) {
   const navigation = useNavigation()
@@ -37,6 +39,10 @@ export default function PersonList({ route }) {
     <>
       <Header/>
       <ScrollView style={styles.container}>
+        <TouchableOpacity style={styles.addPerson} onPress={() => navigation.navigate('PersonForm', {isTeacher: isTeacher})}>
+          <Ionicons name="add" size={30} color="white" />
+          <Text style={styles.addPersonText}>{isTeacher ? "Adicionar Professor" : "Adicionar Aluno"}</Text>
+        </TouchableOpacity>
         {persons.map(person => (
           <View style={styles.personContainer} key={person.id}>
             <Text style={styles.personName}>{ person.name }</Text>

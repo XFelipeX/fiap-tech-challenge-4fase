@@ -2,6 +2,7 @@ import { View, Text, ScrollView, TouchableOpacity } from 'react-native'
 import { useRoute, useNavigation } from '@react-navigation/native'
 import { styles } from './styles'
 import Header from '@/components/Header'
+import React from 'react'
 
 interface IPost {
   id: number,

@@ -43,4 +43,8 @@ export const styles = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center',
   },
+  bottomContainer: {
+    marginTop: 30,
+    display: 'flex',
+  }
 })

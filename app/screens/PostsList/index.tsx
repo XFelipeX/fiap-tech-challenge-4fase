@@ -1,4 +1,4 @@
-import { ScrollView, Text } from 'react-native'
+import { ScrollView, Text, View } from 'react-native'
 import { useNavigation, useFocusEffect } from '@react-navigation/native'
 import { useState } from 'react'
 import { styles } from './styles'
@@ -94,6 +94,7 @@ export default function PostsList() {
         {filteredPosts.map(post => (
           <Post adminPage={false} key={post.id} post={ post } onPress={() => navigation.navigate('PostDetail', {post: post})}/>
         ))}
+        <View style={styles.bottomContainer}></View>
       </ScrollView>
     </>
   )

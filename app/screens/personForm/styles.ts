@@ -22,26 +22,27 @@ export const styles = StyleSheet.create({
     color: colors.text,
     fontSize: 16,
     fontWeight: 'bold',
-    marginBottom: 5
+    marginBottom: 5,
+    marginTop: 20,
   },
   input: {
     backgroundColor: colors.secondBackground,
-    height: 34,
+    height: 40,
     borderRadius: 5,
     borderColor: colors.border,
     borderWidth: 1,
+    fontSize: 16,
     color: colors.text,
-    marginBottom: 20,
     paddingHorizontal: 10
   },
-  contentInput: {
-    paddingVertical: 10,
-    marginBottom: 57,
-    height: 'auto',
-    lineHeight: 20
+  errorMessage: {
+    marginTop: 2,
+    fontSize: 14,
+    color: colors.errorText
   },
   submitButton: {
     backgroundColor: colors.buttonBackground,
+    marginTop: 57,
     marginHorizontal: 'auto',
     paddingHorizontal: 35,
     paddingVertical: 13,

@@ -10,6 +10,9 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 18,
     paddingTop: 26,
   },
+  bottomContainer: {
+    marginBottom: 30
+  },
   addPerson: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -75,5 +78,9 @@ export const styles = StyleSheet.create({
     fontSize: 17,
     fontWeight: 'bold',
     color: colors.text,
+  },
+  feedBackMessage: {
+    color: colors.text,
+    textAlign: 'center'
   }
 })

@@ -9,9 +9,11 @@ import { useNavigation } from '@react-navigation/native'
 import { api } from '@/services/api'
 
 interface IPerson {
-  id: number,
-  email: string,
-  name: string,
+  id: number
+  email: string
+  name: string
+  teachername: string
+  teacherid: number
   password: string
 }
 
@@ -27,7 +29,7 @@ export default function PersonForm({ route }) {
 
     } else {
       if (isTeacher) {
-        return { email: person.email, name: person.name, password: '', confirmPassword: '' }
+        return { email: person.email, name: person.teachername, password: '', confirmPassword: '' }
   
       } else {
         return { name: person.name }
@@ -73,14 +75,14 @@ export default function PersonForm({ route }) {
 
     if (isTeacher) {
       try {
-        await api.put(`/teachers/${person.id}`, {
+        await api.put(`/teachers/${person.teacherid}`, {
           name: name
         });
 
         await api.put('/auth/register', {
           email: email,
           password: password,
-          teacherid: person.id
+          teacherid: person.teacherid
         })
         navigation.navigate('PersonList', {isTeacher: true})
 

@@ -13,7 +13,7 @@ Membros do grupo 37:
 [Escopo/Requisitos](#o-problema) <br>
 [Projeto back-end](https://github.com/XFelipeX/fiap-tech-challenge-2fase)<br>
 [Projeto front-end](https://github.com/XFelipeX/fiap-tech-challenge-3fase)<br>
-[Protótipo mobile no figma](https://discord.com/channels/1237156794992824451/1237156794992824454/1312804909753700384)
+[Protótipo mobile no figma](https://www.figma.com/design/JB0WZqGMfFn1O8VcJbxYw4/Telas-tech-challenge-fase-4?node-id=0-1&t=TqQsZTqbbUDwP3XD-1)
 
 ## O problema
 

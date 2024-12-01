@@ -154,7 +154,7 @@ O projeto adota uma abordagem modular, baseada em componentes reutilizáveis e f
 /app/screens   # Telas principais
 /services      # Integração com APIs e outras funções de serviço
 /styles        # Configurações de estilo global
-/constants     # Cofigurações de váriaveis constantes
+/constants     # Cofigurações de constantes
 /scripts       # Scripts de reset do expo
 .env.sample    # Exemplo de arquivo de configuração de ambiente
 package.json   # Dependências e scripts do projeto

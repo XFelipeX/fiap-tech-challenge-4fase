@@ -9,11 +9,11 @@ Membros do grupo 37:
 - Thiago Scheffer Fialho - RM353477 - thiago.sch.fialho@gmail.com
 - Leonardo Felipe Boatti - leonardoboatti@hotmail.com
 
-[Visualizar Documentação Técnica](#documentação-técnica-do-projeto) <br>
-[Visualizar Escopo/Requishttps://github.com/XFelipeX/fiap-tech-challenge-4fase.gititos](#o-problema) <br>
-[Visualizar Projeto back-end](https://github.com/XFelipeX/fiap-tech-challenge-2fase)<br>
-[Visualizar Projeto front-end](https://github.com/XFelipeX/fiap-tech-challenge-3fase)
-[Visualizar Prótotipo no figma](https://discord.com/channels/1237156794992824451/1237156794992824454/1312804909753700384)
+[Documentação Técnica](#documentação-técnica-do-projeto) <br>
+[Escopo/Requisitos](#o-problema) <br>
+[Projeto back-end](https://github.com/XFelipeX/fiap-tech-challenge-2fase)<br>
+[Projeto front-end](https://github.com/XFelipeX/fiap-tech-challenge-3fase)<br>
+[Protótipo mobile no figma](https://discord.com/channels/1237156794992824451/1237156794992824454/1312804909753700384)
 
 ## O problema
 
@@ -98,30 +98,99 @@ Requisitos funcionais
      repositório, incluindo setup inicial, arquitetura da aplicação e guia
      de uso.
 
-## Documentação Técnica do Projeto - FIAP Tech Challenge 3ª Fase
+## Documentação Técnica do Projeto - FIAP Tech Challenge 4ª Fase
 
 ### Introdução
+
+Este documento apresenta uma visão detalhada do projeto desenvolvido na 4ª fase do FIAP Tech Challenge. A aplicação foi implementada utilizando **React Native** com **TypeScript**, gerenciada pelo **Expo**, que atua como bundler e servidor de desenvolvimento. Trata-se de uma interface mobile projetada para consumir e gerenciar posts, incluindo rotas de autenticação e administração. Neste documento, detalhamos os passos para instalação, configuração e execução da aplicação, além de oferecer uma visão geral da arquitetura e da stack tecnológica empregada.
 
 ### Setup Inicial
 
 **Pré-requisitos:**
 
+- nodejs v20+
+- npm v10+
+- backend implementado na 2ª fase do Tech Challenge, Link para o repositorio: https://github.com/XFelipeX/fiap-tech-challenge-2fase
+- emulador ou dispositivo físico para rodar a aplicação:
+  - Android: Instale o Android Studio ou utilize um dispositivo real.
+  - iOS: Xcode ou um iPhone físico.
+
 **Instalação:**
+
+1. Clone o repositório:<br>
+   `git clone https://github.com/XFelipeX/fiap-tech-challenge-4fase.git`
+2. Instale as dependências:<br>
+   `npm install`
 
 **Configuração:**
 
+1. Crie o arquivo .env para definir as variáveis de ambiente necessárias.
+
+```
+EXPO_PUBLIC_BACKEND_URL=
+```
+
 **Execução:**
 
-**Docker compose**
-
-**Somente Aplicação Node (sem Docker)**
+1. Inicie o servidor de desenvolvimento do Expo:<br>
+   `npm start`
+2. Escaneie o QR Code com o Expo Go App (disponível para Android e iOS) ou inicie o emulador configurado.
 
 ## Arquitetura da Aplicação
 
+O projeto adota uma abordagem modular, baseada em componentes reutilizáveis e funcionalidades independentes.
+
+- Gerenciamento de Estados de Formulários: É feito com bibliotecas como formik e validações com yup.
+- Comunicação com API: Realizada através do axios.
+- Rotas: Configuradas utilizando o @react-navigation/native e o expo-router.
+
 ## Estrutura de Pastas
+
+```
+/assets        # Recursos estáticos como fontes e imagens
+/components    # Componentes reutilizáveis
+/hooks         # Hooks personalizados
+/routes        # Configuração das rotas
+/app/screens   # Telas principais
+/services      # Integração com APIs e outras funções de serviço
+/styles        # Configurações de estilo global
+/constants     # Cofigurações de váriaveis constantes
+/scripts       # Scripts de reset do expo
+.env.sample    # Exemplo de arquivo de configuração de ambiente
+package.json   # Dependências e scripts do projeto
+
+```
 
 ## Rotas
 
+As rotas utilizam o expo-router, que permite a navegação declarativa e baseada em arquivos.
+
+- Rotas públicas:
+  - /login: Página de login.
+  - /postsList: Página com todos os posts.
+  - /postDetail/:id: Exibe um post específico para leitura.
+- Rotas privadas:
+  - /postsAdmin: Página de administração para gerenciar os posts.
+  - /postForm: Formulário de criação e edição de posts.
+  - /personForm: Formulário de criação e edição de professores/alunos
+  - /personList: Página com todos os alunos ou professores.
+
 ## Estilização
 
+A aplicação utiliza um esquema de cores dinâmico, configurado através de um hook personalizado chamado useColorScheme. Esse hook ajusta automaticamente o tema da aplicação (claro ou escuro) com base nas configurações do sistema operacional do usuário ou em uma preferência definida na aplicação.
+
 ## Stack utilizada
+
+A stack tecnológica do projeto é composta por:
+
+- Frontend:
+
+  - React Native com TypeScript
+  - expo como bundler e servidor de desenvolvimento
+  - formik e yup para formulários e validações
+
+- Bibliotecas auxiliares:
+  - axios: Comunicação com APIs
+  - react-native-picker-select: Dropdowns personalizados
+    Testing:
+  - jest e jest-expo: Para testes unitários

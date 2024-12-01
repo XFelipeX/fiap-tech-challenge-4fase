@@ -1,136 +1,153 @@
-import { View, Text, TextInput, TouchableOpacity, ScrollView } from 'react-native'
-import { useNavigation, useRoute } from '@react-navigation/native'
-import { useEffect, useState } from 'react'
-import RNPickerSelect from 'react-native-picker-select'
-import { Formik } from 'formik'
-import * as yup from 'yup'
-import { styles } from './styles'
-import { api } from '@/services/api'
-import Header from '@/components/Header'
-import React from 'react'
+import {
+  View,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  ScrollView,
+} from 'react-native';
+import { useNavigation, useRoute } from '@react-navigation/native';
+import { useEffect, useState } from 'react';
+import RNPickerSelect from 'react-native-picker-select';
+import { Formik } from 'formik';
+import * as yup from 'yup';
+import { styles } from './styles';
+import { api } from '@/services/api';
+import Header from '@/components/Header';
+import React from 'react';
 
 interface IPost {
-  id: number,
-  title: string,
-  content: string,
-  teachername: string,
-  createddate: string,
+  id: number;
+  title: string;
+  content: string;
+  teachername: string;
+  createddate: string;
 }
 
 interface IFormPost {
-  title: string,
-  author: string,
-  content: string
+  title: string;
+  author: string;
+  content: string;
 }
 
 interface IOptionsData {
-  value: string
-  label: string
+  value: string;
+  label: string;
 }
 
 export default function PostForm() {
-  const route = useRoute()
-  const navigation = useNavigation<any>()
-  const { post } = route.params as { post: IPost } || {}
-	const [options, setOptions] = useState<IOptionsData[]>([])
-	const [error, setError] = useState<string | null>(null)
-  let initialValues = { title: '', author: '', content: '' }
-  
-  if (post) {
-    initialValues = {
-      title: post.title,
-      author: post.teachername,
-      content: post.content
-    }
-  }
-  
+  const route = useRoute();
+  const navigation = useNavigation<any>();
+  const { post } = (route.params as { post: IPost }) || {};
+  const [options, setOptions] = useState<IOptionsData[]>([]);
+  const [error, setError] = useState<string | null>(null);
+
   useEffect(() => {
     const fetchTeachers = async () => {
       try {
         const response = await api.get('/teachers');
-				const teachers = response.data.teachers.map((teacher: { name: any; id: any; }) => ({
-					label: teacher.name,
-					value: teacher.id
-				}))
-				setOptions(teachers)
-
+        const teachers = response.data.teachers.map(
+          (teacher: { name: any; id: any }) => ({
+            label: teacher.name,
+            value: teacher.id,
+          }),
+        );
+        setOptions(teachers);
       } catch (error: any) {
-        setError(error.message)
+        setError(error.message);
       }
-    }
+    };
 
     fetchTeachers();
-  }, [])
+  }, []);
+
+  let initialValues = { title: '', author: '', content: '' };
+
+  if (post && options.length > 0) {
+    initialValues = {
+      title: post.title,
+      author:
+        options.find((option) => option.label === post.teachername)?.value ||
+        '',
+      content: post.content,
+    };
+  }
 
   const updatePost = async (values: IFormPost) => {
-    const { title, author, content } = values
-		
-		try {
-			await api.put(`/posts/${post.id}`, {
-				title: title,
-				teacherId: author,
-				content: content
-			});
-      navigation.navigate('PostsAdmin')
+    const { title, author, content } = values;
 
-		} catch (error: any) {
-			setError(error.message)
-		}
-  }
+    try {
+      await api.put(`/posts/${post.id}`, {
+        title: title,
+        teacherId: author,
+        content: content,
+      });
+      navigation.navigate('PostsAdmin');
+    } catch (error: any) {
+      setError(error.message);
+    }
+  };
 
   const createPost = async (values: IFormPost) => {
-    const { title, author, content } = values
-		
-		try {
-			await api.post('/posts', {
-				title: title,
-				teacherId: author,
-				content: content
-			});
-			navigation.navigate('PostsList')
+    const { title, author, content } = values;
 
-		} catch (error: any) {
-			setError(error.message)
-		}
-  }
+    try {
+      await api.post('/posts', {
+        title: title,
+        teacherId: author,
+        content: content,
+      });
+      navigation.navigate('PostsList');
+    } catch (error: any) {
+      setError(error.message);
+    }
+  };
 
   const validationSchema = yup.object().shape({
-    title: yup
-      .string()
-      .required('Por favor, informe um título.'),
-    author: yup
-      .string()
-      .required('Por favor, informe o autor.'),
+    title: yup.string().required('Por favor, informe um título.'),
+    author: yup.string().required('Por favor, informe o autor.'),
     content: yup
       .string()
-      .max(4000, ({ max }) => `O maximo de caracteres para um post é de ${max}.`)
+      .max(
+        4000,
+        ({ max }) => `O maximo de caracteres para um post é de ${max}.`,
+      )
       .required('Por favor, insira o conteúdo.'),
-  })
+  });
 
-  if(error) {
+  if (error) {
     return (
       <>
-        <Header/>
+        <Header />
         <ScrollView style={styles.container}>
           <Text style={styles.feedBackMessage}>Error: {error}</Text>
         </ScrollView>
       </>
-    )
+    );
   }
 
   return (
     <>
-      <Header/>
+      <Header />
       <ScrollView showsVerticalScrollIndicator={false} style={styles.container}>
-        <Text style={styles.title}>{ post ? 'Editar Post' : 'Criar Post' }</Text>
+        <Text style={styles.title}>{post ? 'Editar Post' : 'Criar Post'}</Text>
         <Formik
           validationSchema={validationSchema}
           initialValues={initialValues}
-          onSubmit={(values) => post ? updatePost(values) : createPost(values)}
+          onSubmit={(values) =>
+            post ? updatePost(values) : createPost(values)
+          }
           enableReinitialize
           validateOnBlur={true}
         >
-          {({handleChange, setFieldValue, handleBlur, handleSubmit, values, errors, touched}) => (
+          {({
+            handleChange,
+            setFieldValue,
+            handleBlur,
+            handleSubmit,
+            values,
+            errors,
+            touched,
+          }) => (
             <>
               <Text style={styles.label}>Título</Text>
               <TextInput
@@ -139,18 +156,18 @@ export default function PostForm() {
                 onChangeText={handleChange('title')}
                 onBlur={handleBlur('title')}
                 value={values.title}
-                keyboardType='default'
+                keyboardType="default"
               />
-              {touched.title && errors.title &&
+              {touched.title && errors.title && (
                 <Text style={styles.errorMessage}>{errors.title}</Text>
-              }
+              )}
               <Text style={styles.label}>Autor</Text>
               <View style={styles.selectContainer}>
                 <RNPickerSelect
                   name="author"
                   style={{
                     inputIOS: styles.selectInput,
-                    inputAndroid: styles.selectInput
+                    inputAndroid: styles.selectInput,
                   }}
                   placeholder={{
                     label: 'Selecione um autor',
@@ -161,9 +178,9 @@ export default function PostForm() {
                   items={options}
                 />
               </View>
-              {touched.title && errors.author &&
+              {touched.title && errors.author && (
                 <Text style={styles.errorMessage}>{errors.author}</Text>
-              }
+              )}
               <Text style={styles.label}>Conteúdo</Text>
               <TextInput
                 name="content"
@@ -172,20 +189,24 @@ export default function PostForm() {
                 onChangeText={handleChange('content')}
                 onBlur={handleBlur('content')}
                 value={values.content}
-                keyboardType='default'
+                keyboardType="default"
               />
-              {touched.title && errors.content &&
+              {touched.title && errors.content && (
                 <Text style={styles.errorMessage}>{errors.content}</Text>
-              }
-              <TouchableOpacity style={styles.submitButton} onPress={() => handleSubmit()} >
-                <Text style={styles.submitButtonText}>{ post ? 'Salvar' : 'Criar Post'}</Text>
+              )}
+              <TouchableOpacity
+                style={styles.submitButton}
+                onPress={() => handleSubmit()}
+              >
+                <Text style={styles.submitButtonText}>
+                  {post ? 'Salvar' : 'Criar Post'}
+                </Text>
               </TouchableOpacity>
             </>
           )}
         </Formik>
         <View style={styles.bottomContainer}></View>
       </ScrollView>
-      
     </>
-  )
+  );
 }

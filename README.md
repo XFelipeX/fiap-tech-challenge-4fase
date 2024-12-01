@@ -10,9 +10,10 @@ Membros do grupo 37:
 - Leonardo Felipe Boatti - leonardoboatti@hotmail.com
 
 [Visualizar Documentação Técnica](#documentação-técnica-do-projeto) <br>
-[Visualizar Escopo/Requisitos](#o-problema) <br>
+[Visualizar Escopo/Requishttps://github.com/XFelipeX/fiap-tech-challenge-4fase.gititos](#o-problema) <br>
 [Visualizar Projeto back-end](https://github.com/XFelipeX/fiap-tech-challenge-2fase)<br>
 [Visualizar Projeto front-end](https://github.com/XFelipeX/fiap-tech-challenge-3fase)
+[Visualizar Prótotipo no figma](https://discord.com/channels/1237156794992824451/1237156794992824454/1312804909753700384)
 
 ## O problema
 
